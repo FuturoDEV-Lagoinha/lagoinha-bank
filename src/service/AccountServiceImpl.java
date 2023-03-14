@@ -10,7 +10,10 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Account save(List<Account> list, Account account) {
-        return null;
+        account.generateAccountNumber(list);
+        account.setAccountIdentifier(UUID.randomUUID());
+        list.add(account);
+        return account;
     }
 
     @Override

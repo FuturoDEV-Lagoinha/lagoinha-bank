@@ -8,6 +8,7 @@ import service.interfaces.CustomerService;
 import utils.ObjectBuilder;
 
 import java.util.Scanner;
+import java.util.UUID;
 
 public class LagoinhaBankMain {
     public static void main(String[] args) {
@@ -23,8 +24,10 @@ public class LagoinhaBankMain {
             switch (opcaoSelecionada) {
                 case 1:
                     Customer customer = ObjectBuilder.customer();
-                    Customer customerId = customerService.save(dataBase.getCustomerTable(),customer);
-                    Account account = ObjectBuilder.account();
+                    Customer customerSaved = customerService.save(dataBase.getCustomerTable(),customer);
+                    Account account = ObjectBuilder.account(UUID.randomUUID());
+                    account.setCustomerId(customerSaved.getUuid());
+                    accountService.save(dataBase.getAccountTable(), account);
                     break;
                 case 2:
                     System.out.println("Depósito selecionado");
@@ -39,6 +42,12 @@ public class LagoinhaBankMain {
                     System.out.println("Consultar saldo selecionado.");
                     break;
                 case 6:
+                    System.out.println("Lista das contas:");
+                    dataBase.getAccountTable().forEach(accountList -> {
+                        System.out.println(accountList.toString());
+                    });
+                    break;
+                case 7:
                     System.out.println("Obrigado pela preferência!");
                     System.exit(0);
                     break;

@@ -8,6 +8,7 @@ import entity.Phone;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class ObjectBuilder {
     public static Customer customer() {
@@ -64,7 +65,7 @@ public class ObjectBuilder {
         return phones;
     }
 
-    public static Account account() {
-    return  null;
+    public static Account account(UUID customerId) {
+        return  new Account(customerId);
     }
 }
