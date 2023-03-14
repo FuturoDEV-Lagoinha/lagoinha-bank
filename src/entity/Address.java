@@ -3,7 +3,7 @@ package entity;
 import java.util.UUID;
 
 public class Address {
-    private String streat;
+    private String street;
     private String neighborhood;
     private String city;
     private String state;
@@ -11,12 +11,22 @@ public class Address {
     private String cep;
     private String number;
 
-    public String getStreat() {
-        return streat;
+    public Address(String street, String neighborhood, String city, String state, String country, String cep, String number) {
+        this.street = street;
+        this.neighborhood = neighborhood;
+        this.city = city;
+        this.state = state;
+        this.country = country;
+        this.cep = cep;
+        this.number = number;
     }
 
-    public void setStreat(String streat) {
-        this.streat = streat;
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
     }
 
     public String getNeighborhood() {
@@ -70,7 +80,7 @@ public class Address {
     @Override
     public String toString() {
         return "Address{" +
-                "streat='" + streat + '\'' +
+                "streat='" + street + '\'' +
                 ", neighborhood='" + neighborhood + '\'' +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +

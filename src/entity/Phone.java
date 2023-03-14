@@ -5,6 +5,12 @@ public class Phone {
     private String ddd;
     private String number;
 
+    public Phone(String zipCode, String ddd, String number) {
+        this.zipCode = zipCode;
+        this.ddd = ddd;
+        this.number = number;
+    }
+
     public String getZipCode() {
         return zipCode;
     }

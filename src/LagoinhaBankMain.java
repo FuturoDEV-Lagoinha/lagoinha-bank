@@ -1,9 +1,11 @@
 import dao.MokedDataBase;
 import entity.Account;
+import entity.Customer;
 import service.AccountServiceImpl;
 import service.CustomerServiceImpl;
 import service.interfaces.AccountService;
 import service.interfaces.CustomerService;
+import utils.ObjectBuilder;
 
 import java.util.Scanner;
 
@@ -20,7 +22,9 @@ public class LagoinhaBankMain {
 
             switch (opcaoSelecionada) {
                 case 1:
-                    System.out.println("Informe o ");
+                    Customer customer = ObjectBuilder.customer();
+                    Customer customerId = customerService.save(dataBase.getCustomerTable(),customer);
+                    Account account = ObjectBuilder.account();
                     break;
                 case 2:
                     System.out.println("Depósito selecionado");

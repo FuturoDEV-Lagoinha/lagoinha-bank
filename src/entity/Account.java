@@ -2,6 +2,9 @@ package entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 public class Account {
@@ -14,14 +17,15 @@ public class Account {
 
     private static final String DEFAULT_AGENCY = "1";
 
-    public Account(Integer number, UUID customerId) {
-        this.accountIdentifier = UUID.randomUUID();
+    public Account() { }
+
+    public Account(UUID customerId) {
         this.creationDate = LocalDateTime.now();
         this.agency = DEFAULT_AGENCY;
-        this.number = number.toString();
         this.customerId = customerId;
     }
 
+    public void idGenerator() { this.accountIdentifier = UUID.randomUUID(); }
     public UUID getAccountIdentifier() {
         return accountIdentifier;
     }
@@ -42,16 +46,8 @@ public class Account {
         return agency;
     }
 
-    public void setAgency(String agency) {
-        this.agency = agency;
-    }
-
     public String getNumber() {
         return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
     }
 
     public UUID getCustomerId() {
@@ -68,5 +64,36 @@ public class Account {
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
+    }
+
+    public void generateAccountNumber(List<Account> accounts) {
+        List<String> existsAccountNumber = filterExistsAccountNumbers(accounts);
+        String [] numbers = generateRandom();
+        String numberSelected = null;
+
+
+        for(int i = 0;i < 3;i++){
+            if(!existsAccountNumber.contains(numbers[i])){
+                numberSelected = numbers[i];
+                break;
+            }
+        }
+
+        this.number = numberSelected;
+    }
+
+    private String[] generateRandom() {
+        Double randomNumber = Math.random();
+        String stringRandomNumber = randomNumber.toString();
+        String [] numbers = stringRandomNumber.split("\\.");
+        return numbers[1].split("(?<=\\G.....)");
+    }
+
+    private List<String> filterExistsAccountNumbers(List<Account> accounts) {
+        List<String> existsAccountNumber = new ArrayList<>();
+        accounts.forEach(account -> {
+            existsAccountNumber.add(account.getNumber());
+        });
+        return existsAccountNumber;
     }
 }

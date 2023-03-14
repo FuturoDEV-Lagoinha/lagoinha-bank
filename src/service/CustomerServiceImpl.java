@@ -10,8 +10,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer save(List<Customer> list, Customer customer) {
-
-        return null;
+        customer.generateId();
+        list.add(customer);
+        return customer;
     }
 
     @Override

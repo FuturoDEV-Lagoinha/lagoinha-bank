@@ -12,7 +12,6 @@ public class Customer {
     private List<Phone> phoneList;
 
     public Customer(String name, String documentNumber, String email, Address address, List<Phone> phoneList) {
-        this.uuid = UUID.randomUUID();
         this.name = name;
         this.documentNumber = documentNumber;
         this.email = email;
@@ -20,6 +19,9 @@ public class Customer {
         this.phoneList = phoneList;
     }
 
+    public void generateId() {
+        this.uuid = UUID.randomUUID();
+    }
     public UUID getUuid() {
         return uuid;
     }
@@ -62,5 +64,17 @@ public class Customer {
 
     public void setPhoneList(List<Phone> phoneList) {
         this.phoneList = phoneList;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "uuid=" + uuid +
+                ", name='" + name + '\'' +
+                ", documentNumber='" + documentNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", address=" + address +
+                ", phoneList=" + phoneList +
+                '}';
     }
 }
