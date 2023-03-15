@@ -36,6 +36,17 @@ public class LagoinhaBankMain {
                     System.out.println("Saque selecionado");
                     break;
                 case 4:
+                    System.out.println( "Informe o número da conta para consulta: "  );
+                    String contaInformadaConsulta = scanner.next();
+
+                    for(int contador = 0; contador < dataBase.getAccountTable().size(); contador++ ){
+                        if(contaInformadaConsulta.equals(dataBase.getAccountTable().get(contador).getNumber())){
+                            System.out.println("O saldo da conta é: R$ "+dataBase.getAccountTable().get(contador).getBalance());
+                        }else {
+                            System.out.println("Conta não encontrada!");
+                        }
+                    }
+
                     System.out.println("Transferência selecionada");
                     break;
                 case 5:
