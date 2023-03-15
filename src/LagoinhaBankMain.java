@@ -41,7 +41,7 @@ public class LagoinhaBankMain {
 
                     for(int contador = 0; contador < dataBase.getAccountTable().size(); contador++ ){
                         if(contaInformadaConsulta.equals(dataBase.getAccountTable().get(contador).getNumber())){
-                            System.out.println("O saldo da conta é: "+dataBase.getAccountTable().get(contador).getBalance());
+                            System.out.println("O saldo da conta é: R$ "+dataBase.getAccountTable().get(contador).getBalance());
                         }else {
                             System.out.println("Conta não encontrada!");
                         }
