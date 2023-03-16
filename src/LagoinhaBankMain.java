@@ -19,7 +19,7 @@ public class LagoinhaBankMain {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println(
-                    "---- Bem Vindo(a) ao Lagoinha Bank ---- \nDigite: \n1 - Abrir conta \n2 - Depósito \n3 - Saque \n4 - Consultar saldo\n5 - Transferência \n6 - Listar contas\n7 - Cancelar conta \n0 - Encerrar");
+                    "---- Bem Vindo(a) ao Lagoinha Bank ---- \nDigite: \n1 - Abrir conta \n2 - Depósito \n3 - Saque \n4 - Consultar saldo\n5 - Transferência \n6 - Listar contas\n7 - PIX\n8 - Cancelar Conta \n0 - Encerrar");
             int opcaoSelecionada = scanner.nextInt();
 
             switch (opcaoSelecionada) {
@@ -76,6 +76,9 @@ public class LagoinhaBankMain {
                     break;
                 case 7:
                     System.out.println("PIX selecionado");
+                    break;
+                case 8:
+                    System.out.println("Cancelar conta");
                     break;
                 case 0:
                     System.out.println("Obrigado pela preferência!");
