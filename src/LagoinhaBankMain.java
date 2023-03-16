@@ -38,23 +38,20 @@ public class LagoinhaBankMain {
                     System.out.println("Informe o número da conta: ");
                     String conta = scanner.next();
 
-
                     for(int contador = 0; contador < dataBase.getAccountTable().size(); contador++ ){
                         if(conta.equals(dataBase.getAccountTable().get(contador).getNumber())){
                             System.out.println("Informe o valor do saque: R$");
                             BigDecimal valorSaque = scanner.nextBigDecimal();
-                            BigDecimal saldo = dataBase.getAccountTable().get(contador).getBalance();
-                            if(saldo.compareTo(valorSaque) == 1 || saldo.compareTo(valorSaque) == 0){
-                                dataBase.getAccountTable().get(contador).setBalance(saldo.subtract(valorSaque));
-                                System.out.println("Saque realizado com sucesso! Saldo atual: " + saldo);
+
+                            if(valorSaque.compareTo(dataBase.getAccountTable().get(contador).getBalance()) == 1 ||
+                                    valorSaque.compareTo(dataBase.getAccountTable().get(contador).getBalance()) == 0){
+                                dataBase.getAccountTable().get(contador).setBalance(valorSaque);
+                                System.out.println("Saque realizado com sucesso! Saldo atual: R$ " + dataBase.getAccountTable().get(contador).getBalance());
                         } else {
                                 System.out.println("Saldo insuficiente.");
                             }
                         }
                     }
-
-
-
                         break;
                 case 4:
                     System.out.println( "Informe o número da conta para consulta: "  );
