@@ -7,6 +7,7 @@ import service.interfaces.AccountService;
 import service.interfaces.CustomerService;
 import utils.ObjectBuilder;
 
+import java.math.BigDecimal;
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -34,7 +35,24 @@ public class LagoinhaBankMain {
                     break;
                 case 3:
                     System.out.println("Saque selecionado");
-                    break;
+                    System.out.println("Informe o número da conta: ");
+                    String conta = scanner.next();
+
+                    for(int contador = 0; contador < dataBase.getAccountTable().size(); contador++ ){
+                        if(conta.equals(dataBase.getAccountTable().get(contador).getNumber())){
+                            System.out.println("Informe o valor do saque: R$");
+                            BigDecimal valorSaque = scanner.nextBigDecimal();
+
+                            if(valorSaque.compareTo(dataBase.getAccountTable().get(contador).getBalance()) == 1 ||
+                                    valorSaque.compareTo(dataBase.getAccountTable().get(contador).getBalance()) == 0){
+                                dataBase.getAccountTable().get(contador).setBalance(valorSaque);
+                                System.out.println("Saque realizado com sucesso! Saldo atual: R$ " + dataBase.getAccountTable().get(contador).getBalance());
+                        } else {
+                                System.out.println("Saldo insuficiente.");
+                            }
+                        }
+                    }
+                        break;
                 case 4:
                     System.out.println( "Informe o número da conta para consulta: "  );
                     String contaInformadaConsulta = scanner.next();
