@@ -68,6 +68,24 @@ public class LagoinhaBankMain {
                     System.out.println("Transferência selecionada");
                     break;
                 case 5:
+                    System.out.println("Informe o número da conta de origem: ");
+                    String sourceAccount = scanner.next();
+                    System.out.println("Informe o número da conta de destino: ");
+                    String destinationAccount = scanner.next();
+                    System.out.println("Informe o valor da transferência : R$ ");
+                    BigDecimal transferValue = scanner.nextBigDecimal();
+
+                    for(int contador = 0; contador < dataBase.getAccountTable().size(); contador++ ){
+                        if(sourceAccount.equals(dataBase.getAccountTable().get(contador).getNumber()) ||
+                             dataBase.getAccountTable().get(contador).getBalance().compareTo(transferValue) == 1 ||
+                                dataBase.getAccountTable().get(contador).getBalance().compareTo(transferValue) == 0){
+                            dataBase.getAccountTable().get(contador).getBalance().subtract(transferValue).setDestinationAccoun;
+                            System.out.println("Operação concluída com sucesso.");
+                        } else {
+                            System.out.println("A Operação não pode ser concluída.");
+                        }
+                    }
+
                     System.out.println("Consultar saldo selecionado.");
                     break;
                 case 6:
