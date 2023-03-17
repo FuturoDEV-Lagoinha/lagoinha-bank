@@ -17,6 +17,7 @@ public class LagoinhaBankMain {
         AccountService accountService = new AccountServiceImpl();
         CustomerService customerService = new CustomerServiceImpl();
         Scanner scanner = new Scanner(System.in);
+        final double OPERATION_FEE = 3.5;
         while (true) {
             System.out.println(
                     "---- Bem Vindo(a) ao Lagoinha Bank ---- \nDigite: \n1 - Abrir conta \n2 - Depósito \n3 - Saque \n4 - Consultar saldo\n5 - Transferência \n6 - PIX\n7 - Cancelar conta \n0 - Encerrar");
@@ -76,11 +77,19 @@ public class LagoinhaBankMain {
                     BigDecimal transferValue = scanner.nextBigDecimal();
 
                     for(int contador = 0; contador < dataBase.getAccountTable().size(); contador++ ){
-                        if(sourceAccount.equals(dataBase.getAccountTable().get(contador).getNumber()) ||
-                             dataBase.getAccountTable().get(contador).getBalance().compareTo(transferValue) == 1 ||
-                                dataBase.getAccountTable().get(contador).getBalance().compareTo(transferValue) == 0){
-                            dataBase.getAccountTable().get(contador).getBalance().subtract(transferValue).setDestinationAccoun;
+                        if(sourceAccount.equals(dataBase.getAccountTable().get(contador).getNumber()) &&
+                                (dataBase.getAccountTable().get(contador).getBalance().compareTo(transferValue) == 1 ||
+                                dataBase.getAccountTable().get(contador).getBalance().compareTo(transferValue) == 0)){
+                            BigDecimal operationTotalValue = BigDecimal.valueOf(transferValue.doubleValue() + OPERATION_FEE);
+                            dataBase.getAccountTable().get(contador).getBalance().subtract(operationTotalValue);
+                            for(int contador1 = 0; contador1 < dataBase.getAccountTable().size(); contador1++ ){
+                               if(destinationAccount.equals(dataBase.getAccountTable().get(contador1).getNumber())){
+                                   dataBase.getAccountTable().get(contador1).getBalance().add(transferValue);
+                               }
+                            }
+
                             System.out.println("Operação concluída com sucesso.");
+
                         } else {
                             System.out.println("A Operação não pode ser concluída.");
                         }
