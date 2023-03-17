@@ -1,6 +1,7 @@
 import dao.MokedDataBase;
 import entity.Account;
 import entity.Customer;
+import entity.Pix;
 import service.AccountServiceImpl;
 import service.CustomerServiceImpl;
 import service.interfaces.AccountService;
@@ -75,7 +76,72 @@ public class LagoinhaBankMain {
                     });
                     break;
                 case 7:
-                    System.out.println("PIX selecionado");
+                    System.out.println("Escolha uma Opçao: \n 1 - Cadastrar Chave\n 2 - Editar Chave\n 3 - Exclusao");
+                    int opcao = scanner.nextInt();
+                    switch (opcao){
+
+                        case 1:
+                            System.out.println("Informe a Chave");
+                            String chave = scanner.next();
+                            System.out.println("Informe Numero Da Conta");
+                            String numeroDaConta = scanner.next();
+
+                            for(Account account1: dataBase.getAccountTable()) {
+
+                                if (account1.getNumber().equals(numeroDaConta)){
+
+                                    account1.setPix(new Pix(UUID.randomUUID(),chave));
+
+                                }
+
+
+                            }
+
+
+                            break;
+
+                        case 2:
+
+                            System.out.println("Informe a nova Chave");
+                            String newChave = scanner.next();
+                            System.out.println("Informe Numero Da Conta");
+                            numeroDaConta = scanner.next();
+
+                            for(Account account1: dataBase.getAccountTable()) {
+
+                                if (account1.getNumber().equals(numeroDaConta)) {
+
+                                    account1.getPix().setKey(newChave);
+
+                                }
+
+                            }
+
+                            break;
+
+                        case 3:
+
+                            System.out.println("Informe Numero Da Conta");
+                            numeroDaConta = scanner.next();
+
+                            for(Account account1: dataBase.getAccountTable()) {
+
+                                if (account1.getNumber().equals(numeroDaConta)) {
+
+                                    account1.setPix(null);
+
+                                }
+
+                            }
+
+                            break;
+
+                        default:
+                            System.out.println("Opçao Invalida");
+
+
+
+                    }
                     break;
                 case 8:
                     System.out.println("Cancelar conta");
