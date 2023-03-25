@@ -13,6 +13,7 @@ public class Account {
     private String number;
     private UUID customerId;
     private BigDecimal balance;
+    private Pix pix;
 
     private static final String DEFAULT_AGENCY = "1";
 
@@ -23,6 +24,14 @@ public class Account {
         this.agency = DEFAULT_AGENCY;
         this.customerId = customerId;
         this.balance = BigDecimal.ZERO;
+    }
+
+    public Pix getPix() {
+        return pix;
+    }
+
+    public void setPix(Pix pix) {
+        this.pix = pix;
     }
 
     public void idGenerator() { this.accountIdentifier = UUID.randomUUID(); }
@@ -108,6 +117,7 @@ public class Account {
                 ", number='" + number + '\'' +
                 ", customerId=" + customerId +
                 ", balance=" + balance +
+                ", pix=" + pix +
                 '}';
     }
 }
